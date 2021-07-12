@@ -1,2 +1,2 @@
 # Tensorflow_colab
-### All basic tensorflow fundaments are included
+### All basic tensorflow fundamentals are included
