@@ -1,5 +1,27 @@
 import tensorflow as tf
 
+import matplotlib.pyplot as plt
+def plot_f1_scores(data_in_dataframe):
+  fig, ax = plt.subplots(figsize=(12, 25))
+  scores = ax.barh(range(len(f1_scores)), f1_scores["f1-score"].values)
+  ax.set_yticks(range(len(f1_scores)))
+  ax.set_yticklabels(list(f1_scores["class_name"]))
+  ax.set_xlabel("f1-score")
+  ax.set_title("F1-Scores for 10 Different Classes")
+  ax.invert_yaxis(); # reverse the order
+
+  def autolabel(rects): # Modified version of: https://matplotlib.org/examples/api/barchart_demo.html
+    """
+    Attach a text label above each bar displaying its height (it's value).
+    """
+    for rect in rects:
+      width = rect.get_width()
+      ax.text(1.03*width, rect.get_y() + rect.get_height()/1.5,
+              f"{width:.2f}",
+              ha='center', va='bottom')
+
+  autolabel(scores)
+  
 # Create a function to import an image and resize it to be able to be used with our model
 def load_and_prep_image(filename, img_shape=224, scale=True):
   """
